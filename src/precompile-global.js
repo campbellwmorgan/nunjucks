@@ -5,7 +5,9 @@ function precompileGlobal(templates, opts) {
     opts = opts || {};
 
     for ( var i = 0; i < templates.length; i++ ) {
-        name = JSON.stringify(templates[i].name);
+        // replace all backslashes with forward slashes
+        var normalizedName = templates[i].name.replace(/\\/g, '');
+        name = JSON.stringify(normalizedName);
         template = templates[i].template;
 
         out += '(function() {' +
